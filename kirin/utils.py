@@ -33,9 +33,40 @@ from aniso8601 import parse_date
 from pythonjsonlogger import jsonlogger
 from flask.globals import current_app
 import navitia_wrapper
-from kirin import new_relic
+from kirin import new_relic, redis
+from contextlib import contextmanager
+from redis.exceptions import ConnectionError
+
 
 from kirin.core import model
+
+
+TASK_STOP_MAX_DELAY = current_app.config['TASK_STOP_MAX_DELAY']
+TASK_WAIT_FIXED = current_app.config['TASK_WAIT_FIXED']
+
+
+def make_kirin_lock_name(*args):
+    return '|'.join([current_app.config['TASK_LOCK_PREFIX']] + [str(a) for a in args])
+
+@contextmanager
+def get_lock(logger, lock_name, lock_timeout):
+    logger.debug('getting lock %s', lock_name)
+    try:
+        lock = redis.lock(lock_name, timeout=lock_timeout)
+        locked = lock.acquire(blocking=False)
+    except ConnectionError:
+        logging.exception('Exception with redis while locking')
+        raise
+
+    yield locked
+
+    if locked:
+        logger.debug("releasing lock %s", lock_name)
+        lock.release()
+
+
+def should_retry_exception(exception):
+    return isinstance(exception, ConnectionError)
 
 
 def str_to_date(value):

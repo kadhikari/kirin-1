@@ -27,6 +27,8 @@
 # https://groups.google.com/d/forum/navitia
 # www.navitia.io
 from werkzeug.exceptions import HTTPException
+from redis.exceptions import ConnectionError
+
 
 
 class KirinException(HTTPException):
@@ -55,3 +57,6 @@ class ObjectNotFound(KirinException):
 class MessageNotPublished(KirinException):
     code = 500
     message = 'impossible to publish message on network'
+
+
+

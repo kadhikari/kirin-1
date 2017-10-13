@@ -28,11 +28,7 @@
 # www.navitia.io
 
 import logging
-import requests
-from kirin import gtfs_realtime_pb2, redis
-import navitia_wrapper
 from kirin.tasks import celery
-from kirin.gtfs_rt import model_maker
 import datetime
 from kirin.core.model import TripUpdate, RealTimeUpdate
 from retrying import retry
@@ -44,40 +40,11 @@ from kirin.utils import TASK_STOP_MAX_DELAY, TASK_WAIT_FIXED, make_kirin_lock_na
 @retry(stop_max_delay=TASK_STOP_MAX_DELAY,
        wait_fixed=TASK_WAIT_FIXED,
        retry_on_exception=should_retry_exception)
-def gtfs_poller(self, config):
-    func_name = 'gtfs_poller'
-    logger = logging.LoggerAdapter(logging.getLogger(__name__), extra={'contributor': config['contributor']})
-    logger.debug('polling of %s', config['feed_url'])
-
-    contributor = config['contributor']
-    lock_name = make_kirin_lock_name(func_name, contributor)
-    with get_lock(logger, lock_name, app.config['REDIS_LOCK_TIMEOUT_POLLER']) as locked:
-        if not locked:
-            logger.warning('%s for %s is already in progress', func_name, contributor)
-            return
-
-        response = requests.get(config['feed_url'], timeout=config.get('timeout', 1))
-        response.raise_for_status()
-
-        nav = navitia_wrapper.Navitia(url=config['navitia_url'], token=config['token'])\
-                             .instance(config['coverage'])
-        nav.timeout = 5
-
-        proto = gtfs_realtime_pb2.FeedMessage()
-        proto.ParseFromString(response.content)
-        model_maker.handle(proto, nav, contributor)
-        logger.info('%s for %s is finished', func_name, contributor)
-
-
-@celery.task(bind=True)
-@retry(stop_max_delay=TASK_STOP_MAX_DELAY,
-       wait_fixed=TASK_WAIT_FIXED,
-       retry_on_exception=should_retry_exception)
-def gtfs_purge_trip_update(self, config):
-    func_name = 'gtfs_purge_trip_update'
+def ire_purge_trip_update(self, config):
+    func_name = 'ire_purge_trip_update'
     contributor = config['contributor']
     logger = logging.LoggerAdapter(logging.getLogger(__name__), extra={'contributor': contributor})
-    logger.debug('purge gtfs-rt trip update for %s', contributor)
+    logger.debug('purge ire trip update for %s', contributor)
 
     lock_name = make_kirin_lock_name(func_name, contributor)
     with get_lock(logger, lock_name, app.config['REDIS_LOCK_TIMEOUT_PURGE']) as locked:
@@ -85,7 +52,7 @@ def gtfs_purge_trip_update(self, config):
             logger.warning('%s for %s is already in progress', func_name, contributor)
             return
         until = datetime.date.today() - datetime.timedelta(days=int(config['nb_days_to_keep']))
-        logger.info('purge gtfs-rt trip update until %s', until)
+        logger.info('purge ire trip update until %s', until)
 
         TripUpdate.remove_by_contributors_and_period(contributors=[contributor], start_date=None, end_date=until)
         logger.info('%s for %s is finished', func_name, contributor)
@@ -95,12 +62,12 @@ def gtfs_purge_trip_update(self, config):
 @retry(stop_max_delay=TASK_STOP_MAX_DELAY,
        wait_fixed=TASK_WAIT_FIXED,
        retry_on_exception=should_retry_exception)
-def gtfs_purge_rt_update(self, config):
-    func_name = 'gtfs_purge_rt_update'
+def ire_purger_rt_update(self, config):
+    func_name = 'ire_purger_rt_update'
     connector = config['connector']
 
     logger = logging.LoggerAdapter(logging.getLogger(__name__), extra={'connector': connector})
-    logger.debug('purge gtfs-rt realtime update for %s', connector)
+    logger.debug('purge ire realtime update for %s', connector)
 
     lock_name = make_kirin_lock_name(func_name, connector)
     with get_lock(logger, lock_name, app.config['REDIS_LOCK_TIMEOUT_PURGE']) as locked:
@@ -109,7 +76,7 @@ def gtfs_purge_rt_update(self, config):
             return
 
         until = datetime.date.today() - datetime.timedelta(days=int(config['nb_days_to_keep']))
-        logger.info('purge gtfs-rt realtime update until %s', until)
+        logger.info('purge ire realtime update until %s', until)
 
         RealTimeUpdate.remove_by_connectors_until(connectors=[connector], until=until)
         logger.info('%s for %s is finished', func_name, connector)

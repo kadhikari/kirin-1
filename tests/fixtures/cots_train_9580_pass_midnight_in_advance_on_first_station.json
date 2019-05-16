@@ -1,0 +1,736 @@
+{
+  "ressource": "courseOPE",
+  "mode": "modification",
+  "evt": [
+    "PERTURBATION"
+  ],
+  "PdPObserveArrivee": [],
+  "PdPObserveDepart": [],
+  "PdPPronosticBrutArrivee": [
+    "0f4666b5-082f-4006-9e06-65702e45fdda",
+    "c9decddd-398f-4e28-bad2-e3b782f8b84b",
+    "1025211f-3543-452a-8d61-bd2f2868bad8",
+    "a75a7cd7-8428-4c45-ab0d-dc21a4ccc928",
+    "06c8be2a-b35f-4aee-889a-b1965a040289"
+  ],
+  "PdPPronosticBrutDepart": [
+    "c9decddd-398f-4e28-bad2-e3b782f8b84b",
+    "fef0440f-710e-4425-ae60-ea13ded3df5e",
+    "1025211f-3543-452a-8d61-bd2f2868bad8",
+    "a75a7cd7-8428-4c45-ab0d-dc21a4ccc928",
+    "06c8be2a-b35f-4aee-889a-b1965a040289"
+  ],
+  "PdPPronosticIVArrivee": [
+    "0f4666b5-082f-4006-9e06-65702e45fdda",
+    "c9decddd-398f-4e28-bad2-e3b782f8b84b",
+    "1025211f-3543-452a-8d61-bd2f2868bad8",
+    "a75a7cd7-8428-4c45-ab0d-dc21a4ccc928",
+    "06c8be2a-b35f-4aee-889a-b1965a040289"
+  ],
+  "PdPPronosticIVDepart": [
+    "c9decddd-398f-4e28-bad2-e3b782f8b84b",
+    "fef0440f-710e-4425-ae60-ea13ded3df5e",
+    "1025211f-3543-452a-8d61-bd2f2868bad8",
+    "a75a7cd7-8428-4c45-ab0d-dc21a4ccc928",
+    "06c8be2a-b35f-4aee-889a-b1965a040289"
+  ],
+  "PdPImpacteDepart": [],
+  "PdPImpacteArrivee": [],
+  "nouvelleVersion": {
+    "codeCompagnieTransporteur": "1187",
+    "codeMarqueTransporteur": "TGV",
+    "codeRelation": "671",
+    "codeService": "A2018",
+    "codeSousRelation": "671100",
+    "codeTransporteurResponsable": "1S",
+    "codeTypeMoyenTransport": "0",
+    "coursePTA": {
+      "@id": "c65f1ab6-e71b-4ef4-9743-9b4d26f712c6"
+    },
+    "dateDebutService": "2012-09-13",
+    "dateDerniereModification": "2012-11-20T08:35:06+0000",
+    "dateFinService": "2012-12-31",
+    "estDiscontinue": false,
+    "estTechnique": false,
+    "estimationManuelle": false,
+    "etat": "ACTIVE",
+    "idMotifInterneReference": 8,
+    "idVersion": "c07a8b24-b1bb-454b-9d92-73d40de285ec",
+    "identifiantDansSystemeCreateur": "784ec6d2-ba7b-4c6d-ab96-da03e163345a",
+    "indicateurFer": "FERRE",
+    "listeCouplageCourseOPE": [],
+    "listeCodeTransporteurAssocie": [],
+    "listeEvenement": [
+      {
+        "dateHeureCreation": "2012-11-20T08:35:06+0000",
+        "identifiantDansSystemeCreateur": "CNOSE210820180052",
+        "lieu": {
+          "cr": "0087",
+          "ci": "300863",
+          "ch": "BV"
+        },
+        "systemeCreateur": "2887"
+      }
+    ],
+    "listeJourRegimeDApplication": [
+      {
+        "date": "2012-11-20"
+      }
+    ],
+    "listeJourRegimeFacultatif": [],
+    "listeMotif": [
+      {
+        "dateHeureDeclaration": "2012-11-20T08:35:06+0000",
+        "idMotifInterne": 8,
+        "source": "IRE-GOP"
+      }
+    ],
+    "listePointDeParcours": [
+      {
+        "@id": "c1e2630a-d92a-4e0a-9010-a4e11c0fc777",
+        "arretFacultatif": false,
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "191981",
+        "ch": "WL",
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "22:30:00",
+          "nbJoursPasseMinuit": 0,
+          "statutCirculationOPE": "CREATION"
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-19T21:30:00+0000",
+          "heureLocale": "22:30:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0,
+          "statutCirculationOPE": "CREATION"
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 1,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "c1e2630a-d92a-4e0a-9010-a4e11c0fc777",
+        "arretFacultatif": false,
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0080",
+        "ci": "110684",
+        "ch": "00",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "14:01:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "14:01:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T13:01:00+0000",
+          "heureLocale": "14:01:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T13:01:00+0000",
+          "heureLocale": "14:01:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 2,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "20639414-dbfa-4402-b313-bc2a126ae1d8",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0080",
+        "ci": "140087",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "14:37:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "14:40:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T13:37:00+0000",
+          "heureLocale": "14:37:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T13:40:00+0000",
+          "heureLocale": "14:40:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 3,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "c478935f-045b-428d-8e40-d4b02a020321",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0080",
+        "ci": "142281",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "15:02:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "15:12:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T14:02:00+0000",
+          "heureLocale": "15:02:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T14:12:00+0000",
+          "heureLocale": "15:12:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 4,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "e37a025e-2a43-4fb3-b225-3a69d6336045",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0080",
+        "ci": "142778",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "15:31:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "15:34:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T14:31:00+0000",
+          "heureLocale": "15:31:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T14:34:00+0000",
+          "heureLocale": "15:34:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 5,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "944402e3-b418-4b22-b8db-ea6491c755f1",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "212027",
+        "ch": "BV",
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T15:03:00+0000",
+          "heureLocale": "16:03:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T15:12:00+0000",
+          "heureLocale": "16:12:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 6,
+        "typeArret": "CH",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "16:03:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "16:12:00",
+          "nbJoursPasseMinuit": 0
+        }
+      },
+      {
+        "@id": "289ff9b2-1cf3-4ce2-8897-6b4c4186c173",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "182063",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "16:59:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "17:08:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T15:59:00+0000",
+          "heureLocale": "16:59:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T16:08:00+0000",
+          "heureLocale": "17:08:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 7,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "c25fb86a-a00f-4ea3-95a9-55b99edb3ac6",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "300822",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "17:30:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "17:33:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T16:30:00+0000",
+          "heureLocale": "17:30:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T16:33:00+0000",
+          "heureLocale": "17:33:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [],
+        "listeMotifDepart": [],
+        "rang": 8,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "fef0440f-710e-4425-ae60-ea13ded3df5e",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "300863",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "17:54:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "17:59:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T16:54:00+0000",
+          "heureLocale": "17:54:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T16:59:00+0000",
+          "heureLocale": "17:59:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [
+          {
+            "dateHeureDeclaration": "2012-11-20T08:35:06+0000",
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "listeMotifDepart": [
+          {
+            "dateHeureDeclaration": "2012-11-20T08:35:06+0000",
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "rang": 9,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "c9decddd-398f-4e28-bad2-e3b782f8b84b",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "725002",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "18:54:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "18:56:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T17:54:00+0000",
+          "heureLocale": "18:54:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T17:56:00+0000",
+          "heureLocale": "18:56:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "listeMotifDepart": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "rang": 10,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "a75a7cd7-8428-4c45-ab0d-dc21a4ccc928",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "723197",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "19:56:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "20:06:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T18:56:00+0000",
+          "heureLocale": "19:56:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T19:06:00+0000",
+          "heureLocale": "20:06:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "listeMotifDepart": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "rang": 11,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "1025211f-3543-452a-8d61-bd2f2868bad8",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "318964",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "21:08:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "21:11:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T20:08:00+0000",
+          "heureLocale": "21:08:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T20:11:00+0000",
+          "heureLocale": "21:11:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "listeMotifDepart": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "rang": 12,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "06c8be2a-b35f-4aee-889a-b1965a040289",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "categorieStatistiqueDepart": "LVC",
+        "cr": "0087",
+        "ci": "319012",
+        "ch": "00",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "21:31:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireProductionDepart": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "21:34:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T20:31:00+0000",
+          "heureLocale": "21:31:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurDepart": {
+          "dateHeure": "2012-11-20T20:34:00+0000",
+          "heureLocale": "21:34:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "listeMotifDepart": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "rang": 13,
+        "typeArret": "CH"
+      },
+      {
+        "@id": "0f4666b5-082f-4006-9e06-65702e45fdda",
+        "arretFacultatif": false,
+        "categorieStatistiqueArrivee": "LVC",
+        "cr": "0087",
+        "ci": "751008",
+        "ch": "BV",
+        "horaireProductionArrivee": {
+          "idFuseauHoraire": "Europe/Paris",
+          "heureIncertaine": false,
+          "heureLocale": "21:46:00",
+          "nbJoursPasseMinuit": 0
+        },
+        "horaireVoyageurArrivee": {
+          "dateHeure": "2012-11-20T20:46:00+0000",
+          "heureLocale": "21:46:00",
+          "idFuseauHoraire": "Europe/Paris",
+          "nbJoursPasseMinuit": 0
+        },
+        "listeHoraireProjeteArrivee": [],
+        "listeHoraireProjeteDepart": [],
+        "listeMotifArrivee": [
+          {
+            "idMotifInterne": 8,
+            "source": "IRE-GOP"
+          }
+        ],
+        "listeMotifDepart": [],
+        "rang": 14,
+        "typeArret": "CH"
+      }
+    ],
+    "listeService": [
+      {
+        "code": "CS01",
+        "listeJourRegimeDApplication": [
+          {
+            "date": "2012-11-20"
+          }
+        ],
+        "listePropriete": [
+          {
+            "code": "CP001",
+            "metaPropriete": {
+              "@id": "95352652-200c-430b-8a94-3852677c91ea"
+            },
+            "valeurChaine": "D"
+          },
+          {
+            "code": "CP002",
+            "metaPropriete": {
+              "@id": "350d89f9-8667-4456-9186-765ce07ea238"
+            },
+            "valeurChaine": "T"
+          }
+        ],
+        "metaService": {
+          "@id": "590ecf63-8dcc-46d5-b238-391fd681eba1"
+        },
+        "pointDeParcoursDebut": {
+          "@id": "c1e2630a-d92a-4e0a-9010-a4e11c0fc777"
+        },
+        "pointDeParcoursFin": {
+          "@id": "0f4666b5-082f-4006-9e06-65702e45fdda"
+        }
+      }
+    ],
+    "listeSubstitutionCourse": [],
+    "listeUtilisationSillon": [
+      {
+        "identifiantSillon": {
+          "numeroOperationnelSillon": "9580-9581",
+          "sillonTTH": "042522910097"
+        },
+        "listeJourRegimeDApplication": [
+          {
+            "date": "2012-11-20"
+          }
+        ],
+        "listeJourRegimeFacultatif": [],
+        "pointDebutUtilisationSillon": {
+          "@id": "50f31367-af56-4c08-9bf8-423bf3856dfc"
+        },
+        "pointFinUtilisationSillon": {
+          "@id": "0f4666b5-082f-4006-9e06-65702e45fdda"
+        },
+        "porteur": true,
+        "rangPRDebutUtilisationSillon": 1,
+        "decalagePasseMinuit": 0,
+        "rangPRFinUtilisationSillon": 210
+      }
+    ],
+    "numeroCourse": "9580",
+    "numeroCourseAssocie": "9581",
+    "statutSillonCourse": "NON_CONNU",
+    "statutOperationnel": "PERTURBEE",
+    "systemeCreateur": "2148",
+    "type": "COURSE_OPE",
+    "@id": "784ec6d2-ba7b-4c6d-ab96-da03e163345a"
+  }
+}

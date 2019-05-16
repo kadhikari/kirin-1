@@ -368,6 +368,13 @@ class TripUpdate(db.Model, TimestampMixin):
         return next((st for st in self.stop_time_updates
                      if st.stop_id == stop_id), None)
 
+    def find_first_departure(self):
+        first = next((st for st in self.stop_time_updates
+                      if st.order == 0), None)
+        if first and first.departure:
+            return first.departure.date()
+        return None
+
 
 class RealTimeUpdate(db.Model, TimestampMixin):
     """

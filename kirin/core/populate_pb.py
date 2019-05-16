@@ -69,6 +69,7 @@ def get_st_event(st_status):
         # 'update' or 'none' are modeled as 'SCHEDULED'
         return gtfs_realtime_pb2.TripUpdate.StopTimeUpdate.SCHEDULED
 
+
 def get_trip_event(trip_status):
     trip_events = {
         'NO_SERVICE': gtfs_realtime_pb2.Alert.NO_SERVICE,
@@ -82,6 +83,7 @@ def get_trip_event(trip_status):
         'STOP_MOVED': gtfs_realtime_pb2.Alert.STOP_MOVED,
     }
     return trip_events.get(trip_status, None)
+
 
 def fill_stop_times(pb_stop_time, stop_time):
     pb_stop_time.stop_id = stop_time.stop_id
@@ -136,9 +138,12 @@ def fill_trip_update(pb_trip_update, trip_update):
     vj = trip_update.vj
     if vj:
         pb_trip.trip_id = vj.navitia_trip_id
-        # WARNING: here trip.start_date is considered UTC, not local
-        # (this date differs if vj starts during the period between midnight UTC and local midnight)
-        pb_trip.start_date = date_to_str(vj.get_utc_circulation_date())
+        # Here we use the departure datetime of first stop_time
+        circulation_date = trip_update.find_first_departure()
+        if not circulation_date:
+            circulation_date = vj.get_utc_circulation_date()
+        pb_trip.start_date = date_to_str(circulation_date)
+
         # TODO fill the right schedule_relationship
         if trip_update.status == 'delete':
             pb_trip.schedule_relationship = gtfs_realtime_pb2.TripDescriptor.CANCELED

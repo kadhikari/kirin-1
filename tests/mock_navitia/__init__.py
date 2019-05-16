@@ -61,6 +61,8 @@ import physical_mode_Coach
 import st_0087_543009_BV
 import st_0087_215632_00
 import vj_unknown_object
+import vj_9580
+import st_0087_191981_WL
 import logging
 
 mocks = [
@@ -96,6 +98,8 @@ mocks = [
     st_0087_215632_00.response,
     physical_mode_Coach.response,
     vj_unknown_object.response,
+    vj_9580.response,
+    st_0087_191981_WL.response,
 ]
 _mock_navitia_call = {}
 for r in mocks:

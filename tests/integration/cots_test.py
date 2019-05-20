@@ -1362,6 +1362,7 @@ def test_cots_add_trip_existing_in_navitia():
 
 def test_cots_update_trip_with_delay_pass_midnight_on_first_station():
     """
+    Relates to "test_delay_pass_midnight_towards_next_day" in jormungandr
     Disruption on a base-schedule VJ that was past-midnight.
     The disruption changes the first station and delays it so that the realtime VJ is not past-midnight anymore.
     Testing that the realtime VJ is circulating on the right day (so one day after the base-schedule VJ).
@@ -1399,11 +1400,12 @@ def test_cots_update_trip_with_delay_pass_midnight_on_first_station():
         assert stop_times[3].departure == datetime(2012, 11, 20, 1, 15)
 
 
-def test_cots_update_trip_with_advance_pass_midnight_on_first_station():
+def test_cots_add_first_stop_with_advance_pass_midnight():
     """
+    Relates to test_delay_pass_midnight_towards_previous_day in jormungandr
     Vehicle_journey with first stop_time at 14:01 and last stop_time at 21:46 for 20121120
     Disruption on a base-schedule VJ without pass-midnight.
-    The disruption changes (detour) the first station at 21:30 and advances it so that the realtime VJ is
+    The disruption adds a previous stop before existing stops at 21:30 the day before so that the realtime VJ is
     a past-midnight the day before (20121119).
     Test that the realtime VJ is circulating on the right day: 20121119 (so one day before the base-schedule VJ).
     """
@@ -1414,7 +1416,7 @@ def test_cots_update_trip_with_advance_pass_midnight_on_first_station():
         assert len(RealTimeUpdate.query.all()) == 1
         trips = TripUpdate.query.all()
         assert len(trips) == 1
-        assert trips[0].status == 'update'
+        assert trips[0].effect == 'MODIFIED_SERVICE'
         stop_times = StopTimeUpdate.query.all()
         assert len(stop_times) == 14
 

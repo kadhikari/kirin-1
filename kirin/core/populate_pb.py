@@ -138,8 +138,9 @@ def fill_trip_update(pb_trip_update, trip_update):
     vj = trip_update.vj
     if vj:
         pb_trip.trip_id = vj.navitia_trip_id
-        # Here we use the departure datetime of first stop_time
-        circulation_date = trip_update.find_first_departure()
+        # WARNING: here trip.start_date is considered UTC, not local
+        # We use the departure date of first stop_time
+        circulation_date = trip_update.find_first_departure_date()
         if not circulation_date:
             circulation_date = vj.get_utc_circulation_date()
         pb_trip.start_date = date_to_str(circulation_date)

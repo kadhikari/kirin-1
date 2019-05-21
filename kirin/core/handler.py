@@ -457,7 +457,7 @@ def merge(navitia_vj, db_trip_update, new_trip_update, is_new_complete=False):
     previous_stop_event = TimeDelayTuple(time=None, delay=None)
     last_departure = None
     utc_circulation_date = new_trip_update.vj.get_utc_circulation_date()
-    utc_new_circulation_date = new_trip_update.find_first_departure()
+    utc_new_circulation_date = new_trip_update.find_first_departure_date()
     if utc_new_circulation_date:
         utc_circulation_date = min(utc_circulation_date, utc_new_circulation_date)
 

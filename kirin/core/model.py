@@ -368,7 +368,7 @@ class TripUpdate(db.Model, TimestampMixin):
         return next((st for st in self.stop_time_updates
                      if st.stop_id == stop_id), None)
 
-    def find_first_departure(self):
+    def find_first_departure_date(self):
         max_date = datetime.date(3000, 12, 11)
         min_date = max_date
         for st in self.stop_time_updates:

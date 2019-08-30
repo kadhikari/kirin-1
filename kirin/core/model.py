@@ -448,6 +448,7 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
     __table_args__ = (
         db.Index("realtime_update_created_at", "created_at"),
         db.Index("realtime_update_contributor_and_created_at", "created_at", "contributor"),
+        db.Index("realtime_update_contributor_id_and_created_at", "created_at", "contributor_id"),
     )
 
     def __init__(self, raw_data, connector, contributor="realtime.cots", status="OK", error=None, received_at=None):

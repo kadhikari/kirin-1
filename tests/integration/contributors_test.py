@@ -50,6 +50,10 @@ def test_get_contributor_end_point(test_client):
 
 @pytest.fixture
 def with_contributors():
+    # Clean table contributor before adding any elements as we don't clean it in the function clean_db
+    db.session.execute("TRUNCATE table contributor CASCADE;")
+    db.session.commit()
+
     db.session.add_all(
         [
             model.Contributor("realtime.sherbrooke", "ca", "gtfs-rt", "my_token", "http://feed.url"),
@@ -129,7 +133,7 @@ def test_post_new_contributor(test_client):
     assert contrib.feed_url == "http://nihongo.jp"
 
 
-def test_post_new_partial_contributor(test_client):
+def test_post_new_partial_contributor(test_client, with_contributors):
     new_contrib = {"id": "realtime.tokyo", "navitia_coverage": "jp", "connector_type": "gtfs-rt"}
     resp = test_client.post("/contributors", json=new_contrib)
     assert resp.status_code == 201
@@ -192,7 +196,7 @@ def test_post_contributor_with_wrong_connector_type_should_fail(test_client):
     assert resp.status_code == 400
 
 
-def test_post_new_valid_contributor_with_unknown_parameter_should_work(test_client):
+def test_post_new_valid_contributor_with_unknown_parameter_should_work(test_client, with_contributors):
     resp = test_client.post(
         "/contributors",
         json={

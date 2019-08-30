@@ -174,7 +174,8 @@ def test_get_action_on_trip_add(mock_navitia_fixture):
         assert action_on_trip == ActionOnTrip.PREVIOUSLY_ADDED.name
 
         # Clean database for further test
-        tables = [six.text_type(table) for table in db.metadata.sorted_tables]
+        # The table contributor should never be emptied as referenced in real_time_update and trip_update
+        tables = [six.text_type(table) for table in db.metadata.sorted_tables if six.text_type(table) != 'contributor']
         db.session.execute("TRUNCATE {} CASCADE;".format(", ".join(tables)))
         db.session.commit()
 

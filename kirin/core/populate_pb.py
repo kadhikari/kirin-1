@@ -126,8 +126,8 @@ def fill_message(pb_trip_update, message):
 
 def fill_trip_update(pb_trip_update, trip_update):
     pb_trip = pb_trip_update.trip
-    if trip_update.contributor:
-        pb_trip.Extensions[kirin_pb2.contributor] = trip_update.contributor
+    if trip_update.contributor_id:
+        pb_trip.Extensions[kirin_pb2.contributor] = trip_update.contributor_id
     if trip_update.message:
         fill_message(pb_trip_update, trip_update.message)
     if trip_update.company_id:

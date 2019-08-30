@@ -316,12 +316,14 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
     effect = db.Column(Db_TripEffect, nullable=True)
     physical_mode_id = db.Column(db.Text, nullable=True)
     headsign = db.Column(db.Text, nullable=True)
+    contributor_id = db.Column(db.Text, db.ForeignKey('contributor.id'), nullable=False)
+    db.Index("contributor_id_idx", contributor_id)
 
     def __init__(
         self,
         vj=None,
         status="none",
-        contributor=None,
+        contributor="realtime.cots",
         company_id=None,
         effect=None,
         physical_mode_id=None,
@@ -330,11 +332,11 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
         self.created_at = datetime.datetime.utcnow()
         self.vj = vj
         self.status = status
-        self.contributor = contributor
         self.company_id = company_id
         self.effect = effect
         self.physical_mode_id = physical_mode_id
         self.headsign = headsign
+        self.contributor_id = contributor
 
     def __repr__(self):
         return "<TripUpdate %r>" % self.vj_id
@@ -377,7 +379,7 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
 
     @classmethod
     def find_by_contributor_period(cls, contributors, start_date=None, end_date=None):
-        query = cls.query.filter(cls.contributor.in_(contributors))
+        query = cls.query.filter(cls.contributor_id.in_(contributors))
         if start_date:
             start_dt = datetime.datetime.combine(start_date, datetime.time(0, 0))
             query = query.filter(
@@ -433,6 +435,7 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
     error = db.Column(db.Text, nullable=True)
     raw_data = deferred(db.Column(db.Text, nullable=True))
     contributor = db.Column(db.Text, nullable=True)
+    contributor_id = db.Column(db.Text, db.ForeignKey('contributor.id'), nullable=False)
 
     trip_updates = db.relationship(
         "TripUpdate",
@@ -447,14 +450,14 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
         db.Index("realtime_update_contributor_and_created_at", "created_at", "contributor"),
     )
 
-    def __init__(self, raw_data, connector, contributor, status="OK", error=None, received_at=None):
+    def __init__(self, raw_data, connector, contributor="realtime.cots", status="OK", error=None, received_at=None):
         self.id = gen_uuid()
         self.raw_data = raw_data
         self.connector = connector
         self.status = status
         self.error = error
-        self.contributor = contributor
         self.received_at = received_at if received_at else datetime.datetime.utcnow()
+        self.contributor_id = contributor
 
     @classmethod
     def get_probes_by_contributor(cls):
@@ -464,10 +467,10 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
         from kirin import app
 
         result = {"last_update": {}, "last_valid_update": {}, "last_update_error": {}}
-        contributor = [app.config[str("COTS_CONTRIBUTOR")], app.config[str("GTFS_RT_CONTRIBUTOR")]]
-        for c in contributor:
+        contributors = [app.config[str("COTS_CONTRIBUTOR")], app.config[str("GTFS_RT_CONTRIBUTOR")]]
+        for c in contributors:
             sql = db.session.query(cls.created_at, cls.status, cls.updated_at, cls.error)
-            sql = sql.filter(cls.contributor == c)
+            sql = sql.filter(cls.contributor_id == c)
             sql = sql.order_by(desc(cls.created_at))
             row = sql.first()
             if row:
@@ -500,7 +503,7 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
 
     @classmethod
     def get_last_rtu(cls, connector, contributor):
-        q = cls.query.filter_by(connector=connector, contributor=contributor)
+        q = cls.query.filter_by(connector=connector, contributor_id=contributor)
         q = q.order_by(desc(cls.created_at))
         return q.first()
 

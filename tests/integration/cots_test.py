@@ -126,7 +126,7 @@ def test_cots_simple_post(mock_rabbitmq):
         assert rtu.received_at
         assert rtu.status == "OK"
         assert rtu.error is None
-        assert rtu.contributor == "realtime.cots"
+        assert rtu.contributor_id == "realtime.cots"
         assert rtu.connector == "cots"
         assert "listePointDeParcours" in rtu.raw_data
     assert mock_rabbitmq.call_count == 1

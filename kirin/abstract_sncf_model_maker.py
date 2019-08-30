@@ -111,7 +111,7 @@ def get_navitia_stop_time_sncf(cr, ci, ch, nav_vj):
 
 
 class AbstractSNCFKirinModelBuilder(six.with_metaclass(ABCMeta, object)):
-    def __init__(self, nav, contributor=None):
+    def __init__(self, nav, contributor="realtime.cots"):
         self.navitia = nav
         self.contributor = contributor
 

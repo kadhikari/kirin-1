@@ -90,7 +90,7 @@ def test_populate_pb_with_one_stop_time():
         assert pb_stop_time.stop_id == "sa:1"
 
         assert pb_trip_update.HasExtension(kirin_pb2.trip_message) is False
-        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is False
+        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is True
         assert pb_trip_update.trip.HasExtension(kirin_pb2.company_id) is False
         assert pb_trip_update.HasExtension(kirin_pb2.effect) is False
 
@@ -150,7 +150,7 @@ def test_populate_pb_with_two_stop_time():
         assert pb_trip_update.trip.trip_id == "vehicle_journey:1"
         assert pb_trip_update.trip.start_date == "20150908"
         assert pb_trip_update.HasExtension(kirin_pb2.trip_message) is False
-        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is False
+        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is True
         assert pb_trip_update.trip.HasExtension(kirin_pb2.company_id) is False
         assert pb_trip_update.HasExtension(kirin_pb2.effect) is False
         assert pb_trip_update.trip.schedule_relationship == gtfs_realtime_pb2.TripDescriptor.SCHEDULED
@@ -273,7 +273,7 @@ def test_populate_pb_with_deleted_stop_time():
         assert pb_trip_update.trip.trip_id == "vehicle_journey:1"
         assert pb_trip_update.trip.start_date == "20150908"
         assert pb_trip_update.HasExtension(kirin_pb2.trip_message) is False
-        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is False
+        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is True
         assert pb_trip_update.trip.HasExtension(kirin_pb2.company_id) is False
         assert pb_trip_update.HasExtension(kirin_pb2.effect) is False
         assert pb_trip_update.trip.schedule_relationship == gtfs_realtime_pb2.TripDescriptor.SCHEDULED
@@ -360,7 +360,7 @@ def test_populate_pb_with_cancelation():
         trip_update.status = "delete"
         trip_update.message = "Message Test"
         real_time_update = RealTimeUpdate(raw_data=None, connector="cots", contributor="realtime.cots")
-        trip_update.contributor = "kisio-digital"
+        trip_update.contributor = "realtime.cots"
         trip_update.company_id = "sncf"
         trip_update.effect = "REDUCED_SERVICE"
         real_time_update.trip_updates.append(trip_update)
@@ -375,12 +375,12 @@ def test_populate_pb_with_cancelation():
         pb_trip_update = feed_entity.entity[0].trip_update
         assert pb_trip_update.trip.trip_id == "vehicle_journey:1"
         assert pb_trip_update.trip.start_date == "20150908"
-        assert pb_trip_update.HasExtension(kirin_pb2.trip_message) == True
+        assert pb_trip_update.HasExtension(kirin_pb2.trip_message) is True
         assert pb_trip_update.Extensions[kirin_pb2.trip_message] == "Message Test"
         assert pb_trip_update.trip.schedule_relationship == gtfs_realtime_pb2.TripDescriptor.CANCELED
 
-        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) == True
-        assert pb_trip_update.trip.Extensions[kirin_pb2.contributor] == "kisio-digital"
+        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is True
+        assert pb_trip_update.trip.Extensions[kirin_pb2.contributor] == "realtime.cots"
         assert pb_trip_update.trip.Extensions[kirin_pb2.company_id] == "sncf"
         assert pb_trip_update.Extensions[kirin_pb2.effect] == gtfs_realtime_pb2.Alert.REDUCED_SERVICE
 
@@ -405,7 +405,7 @@ def test_populate_pb_with_full_dataset():
         trip_update.status = "delete"
         trip_update.message = "Message Test"
         real_time_update = RealTimeUpdate(raw_data=None, connector="cots", contributor="realtime.cots")
-        trip_update.contributor = "kisio-digital"
+        trip_update.contributor_id = "realtime.cots"
         trip_update.company_id = "keolis"
         trip_update.effect = "DETOUR"
         real_time_update.trip_updates.append(trip_update)
@@ -424,8 +424,8 @@ def test_populate_pb_with_full_dataset():
         assert pb_trip_update.Extensions[kirin_pb2.trip_message] == "Message Test"
         assert pb_trip_update.trip.schedule_relationship == gtfs_realtime_pb2.TripDescriptor.CANCELED
 
-        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) == True
-        assert pb_trip_update.trip.Extensions[kirin_pb2.contributor] == "kisio-digital"
+        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is True
+        assert pb_trip_update.trip.Extensions[kirin_pb2.contributor] == "realtime.cots"
         assert pb_trip_update.trip.Extensions[kirin_pb2.company_id] == "keolis"
         assert pb_trip_update.Extensions[kirin_pb2.effect] == gtfs_realtime_pb2.Alert.DETOUR
 
@@ -540,7 +540,7 @@ def test_populate_pb_for_added_trip():
         assert pb_trip_update.trip.trip_id == "OCE:SN:vehicle_journey:1"
         assert pb_trip_update.trip.start_date == "20150908"
         assert pb_trip_update.HasExtension(kirin_pb2.trip_message) is False
-        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is False
+        assert pb_trip_update.trip.HasExtension(kirin_pb2.contributor) is True
         assert pb_trip_update.trip.HasExtension(kirin_pb2.company_id) is False
         assert pb_trip_update.HasExtension(kirin_pb2.effect) is True
         assert pb_trip_update.Extensions[kirin_pb2.effect] == gtfs_realtime_pb2.Alert.ADDITIONAL_SERVICE

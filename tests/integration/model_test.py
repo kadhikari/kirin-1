@@ -238,7 +238,9 @@ def test_find_activate():
                             20150905   20150906
         """
 
-        rtu = TripUpdate.find_by_contributor_period(["realtime.cots"], datetime.date(2015, 9, 5), datetime.date(2015, 9, 6))
+        rtu = TripUpdate.find_by_contributor_period(
+            ["realtime.cots"], datetime.date(2015, 9, 5), datetime.date(2015, 9, 6)
+        )
         assert len(rtu) == 0
 
         """
@@ -250,7 +252,9 @@ def test_find_activate():
                             20150905            20150908
         """
 
-        rtu = TripUpdate.find_by_contributor_period(["realtime.cots"], datetime.date(2015, 9, 5), datetime.date(2015, 9, 8))
+        rtu = TripUpdate.find_by_contributor_period(
+            ["realtime.cots"], datetime.date(2015, 9, 5), datetime.date(2015, 9, 8)
+        )
         assert len(rtu) == 1
 
         """
@@ -262,7 +266,9 @@ def test_find_activate():
                             20150905                    20150909
         """
 
-        rtu = TripUpdate.find_by_contributor_period(["realtime.cots"], datetime.date(2015, 9, 5), datetime.date(2015, 9, 9))
+        rtu = TripUpdate.find_by_contributor_period(
+            ["realtime.cots"], datetime.date(2015, 9, 5), datetime.date(2015, 9, 9)
+        )
         assert len(rtu) == 1
 
         """

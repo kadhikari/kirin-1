@@ -8,8 +8,8 @@ Create Date: 2019-08-29 10:28:48.053647
 from __future__ import absolute_import, print_function, unicode_literals, division
 
 # revision identifiers, used by Alembic.
-revision = '443587af1780'
-down_revision = '53647ffeb3c6'
+revision = "443587af1780"
+down_revision = "53647ffeb3c6"
 
 from alembic import op
 import sqlalchemy as sa
@@ -30,11 +30,14 @@ def upgrade():
     op.execute("COMMIT")
 
     # add contributor_id in real_time_update and trip_update as foreign key
-    op.add_column('real_time_update', sa.Column('contributor_id', sa.Text(), nullable=True))
-    op.create_foreign_key('fk_real_time_update_contributor_id', 'real_time_update',
-                          'contributor', ['contributor_id'], ['id'])
-    op.add_column('trip_update', sa.Column('contributor_id', sa.Text(), nullable=True))
-    op.create_foreign_key('fk_trip_update_contributor_id', 'trip_update', 'contributor', ['contributor_id'], ['id'])
+    op.add_column("real_time_update", sa.Column("contributor_id", sa.Text(), nullable=True))
+    op.create_foreign_key(
+        "fk_real_time_update_contributor_id", "real_time_update", "contributor", ["contributor_id"], ["id"]
+    )
+    op.add_column("trip_update", sa.Column("contributor_id", sa.Text(), nullable=True))
+    op.create_foreign_key(
+        "fk_trip_update_contributor_id", "trip_update", "contributor", ["contributor_id"], ["id"]
+    )
 
     # Update contributor_id value with contributor
     op.execute("UPDATE real_time_update SET contributor_id = contributor;")
@@ -46,8 +49,10 @@ def upgrade():
 
     # create index on contributor_id
     op.create_index(
-        "realtime_update_contributor_id_and_created_at", "real_time_update",
-        ["created_at", "contributor_id"], unique=False,
+        "realtime_update_contributor_id_and_created_at",
+        "real_time_update",
+        ["created_at", "contributor_id"],
+        unique=False,
     )
     op.create_index("contributor_id_idx", "trip_update", ["contributor_id"], unique=False)
 
@@ -58,10 +63,9 @@ def downgrade():
     op.drop_index("contributor_id_idx", table_name="trip_update")
 
     # Drop foreignKey constraints
-    op.drop_constraint('fk_trip_update_contributor_id', 'trip_update', type_='foreignkey')
-    op.drop_constraint('fk_real_time_update_contributor_id', 'real_time_update', type_='foreignkey')
+    op.drop_constraint("fk_trip_update_contributor_id", "trip_update", type_="foreignkey")
+    op.drop_constraint("fk_real_time_update_contributor_id", "real_time_update", type_="foreignkey")
 
     # Delete contributor_id in real_time_update and trip_update
-    op.drop_column('trip_update', 'contributor_id')
-    op.drop_column('real_time_update', 'contributor_id')
-
+    op.drop_column("trip_update", "contributor_id")
+    op.drop_column("real_time_update", "contributor_id")

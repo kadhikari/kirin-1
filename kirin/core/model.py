@@ -316,7 +316,7 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
     effect = db.Column(Db_TripEffect, nullable=True)
     physical_mode_id = db.Column(db.Text, nullable=True)
     headsign = db.Column(db.Text, nullable=True)
-    contributor_id = db.Column(db.Text, db.ForeignKey('contributor.id'), nullable=False)
+    contributor_id = db.Column(db.Text, db.ForeignKey("contributor.id"), nullable=False)
     db.Index("contributor_id_idx", contributor_id)
 
     def __init__(
@@ -435,7 +435,7 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
     error = db.Column(db.Text, nullable=True)
     raw_data = deferred(db.Column(db.Text, nullable=True))
     contributor = db.Column(db.Text, nullable=True)
-    contributor_id = db.Column(db.Text, db.ForeignKey('contributor.id'), nullable=False)
+    contributor_id = db.Column(db.Text, db.ForeignKey("contributor.id"), nullable=False)
 
     trip_updates = db.relationship(
         "TripUpdate",
@@ -451,7 +451,9 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
         db.Index("realtime_update_contributor_id_and_created_at", "created_at", "contributor_id"),
     )
 
-    def __init__(self, raw_data, connector, contributor="realtime.cots", status="OK", error=None, received_at=None):
+    def __init__(
+        self, raw_data, connector, contributor="realtime.cots", status="OK", error=None, received_at=None
+    ):
         self.id = gen_uuid()
         self.raw_data = raw_data
         self.connector = connector

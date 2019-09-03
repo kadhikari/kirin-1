@@ -470,6 +470,8 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
         from kirin import app
 
         result = {"last_update": {}, "last_valid_update": {}, "last_update_error": {}}
+
+        # TODO: contributors to be read from the table contributor and updated if present in conig file
         contributors = [app.config[str("COTS_CONTRIBUTOR")], app.config[str("GTFS_RT_CONTRIBUTOR")]]
         for c in contributors:
             sql = db.session.query(cls.created_at, cls.status, cls.updated_at, cls.error)

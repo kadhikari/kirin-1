@@ -50,7 +50,7 @@ def test_get_contributor_end_point(test_client):
 
 @pytest.fixture
 def with_contributors():
-    # Clean table contributor before adding any elements as we don't clean it in the function clean_db
+    # Clean table contributor before adding any elements as we fill two contributors in the function clean_db
     db.session.execute("TRUNCATE table contributor CASCADE;")
     db.session.commit()
 

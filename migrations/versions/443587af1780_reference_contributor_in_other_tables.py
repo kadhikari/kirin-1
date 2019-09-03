@@ -16,18 +16,20 @@ import sqlalchemy as sa
 
 
 def upgrade():
-    # Insert information for a contributor 'realtime.cots' and 'realtime.sherbrooke' if absent
+    # Insert information for a contributor 'realtime.cots' and 'realtime.sherbrooke'
+    # if present in the table trip_update and absent in contributor
     op.execute(
         "INSERT INTO contributor SELECT 'realtime.cots','sncf',"
         "'token_to_be_modified','feed_url_to_be_modified','cots'"
-        " WHERE NOT EXISTS (SELECT * FROM contributor WHERE ID = 'realtime.cots');"
+        " WHERE 'realtime.cots' in (SELECT DISTINCT contributor FROM real_time_update)"
+        " AND NOT EXISTS (SELECT * FROM contributor WHERE ID = 'realtime.cots');"
     )
     op.execute(
         "INSERT INTO contributor SELECT 'realtime.sherbrooke','ca-qc-sherbrooke',"
         "'token_to_be_modified','feed_url_to_be_modified','gtfs-rt'"
-        " WHERE NOT EXISTS (SELECT * FROM contributor WHERE ID = 'realtime.sherbrooke');"
+        " WHERE 'realtime.sherbrooke' in (SELECT DISTINCT contributor FROM real_time_update)"
+        " AND NOT EXISTS (SELECT * FROM contributor WHERE ID = 'realtime.sherbrooke');"
     )
-    op.execute("COMMIT")
 
     # add contributor_id in real_time_update and trip_update as foreign key
     op.add_column("real_time_update", sa.Column("contributor_id", sa.Text(), nullable=True))
@@ -69,3 +71,6 @@ def downgrade():
     # Delete contributor_id in real_time_update and trip_update
     op.drop_column("trip_update", "contributor_id")
     op.drop_column("real_time_update", "contributor_id")
+
+    # Delete lines from the table contributor
+    op.execute("DELETE FROM contributor;")

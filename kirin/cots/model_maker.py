@@ -379,6 +379,7 @@ class KirinModelBuilder(AbstractSNCFKirinModelBuilder):
         Following the COTS spec: https://github.com/CanalTP/kirin/blob/master/documentation/cots_connector.md
         """
         trip_update = model.TripUpdate(vj=vj, contributor=self.contributor)
+        trip_update.contributor = self.contributor
         trip_update.contributor_id = self.contributor
         trip_message_id = get_value(json_train, "idMotifInterneReference", nullable=True)
         if trip_message_id:

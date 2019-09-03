@@ -39,7 +39,7 @@ import pytest
 import sqlalchemy
 
 
-def create_trip_update(vj_id, trip_id, circulation_date):
+def create_trip_update(vj_id, trip_id, circulation_date, contributor="realtime.cots"):
     trip_update = TripUpdate()
     vj = VehicleJourney(
         {
@@ -53,6 +53,7 @@ def create_trip_update(vj_id, trip_id, circulation_date):
     )
     vj.id = vj_id
     trip_update.vj = vj
+    trip_update.contributor_id = contributor
 
     db.session.add(vj)
     db.session.add(trip_update)

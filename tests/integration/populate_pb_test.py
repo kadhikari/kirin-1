@@ -63,7 +63,7 @@ def test_populate_pb_with_one_stop_time():
     }
 
     with app.app_context():
-        trip_update = TripUpdate()
+        trip_update = TripUpdate(contributor="realtime.cots")
         vj = VehicleJourney(
             navitia_vj, datetime.datetime(2015, 9, 8, 5, 10, 0), datetime.datetime(2015, 9, 8, 8, 10, 0)
         )
@@ -116,7 +116,7 @@ def test_populate_pb_with_two_stop_time():
     }
 
     with app.app_context():
-        trip_update = TripUpdate()
+        trip_update = TripUpdate(contributor="realtime.cots")
         vj = VehicleJourney(
             navitia_vj, datetime.datetime(2015, 9, 8, 5, 10, 0), datetime.datetime(2015, 9, 8, 8, 10, 0)
         )
@@ -220,7 +220,7 @@ def test_populate_pb_with_deleted_stop_time():
     }
 
     with app.app_context():
-        trip_update = TripUpdate()
+        trip_update = TripUpdate(contributor="realtime.cots")
         vj = VehicleJourney(
             navitia_vj, datetime.datetime(2015, 9, 8, 5, 11, 0), datetime.datetime(2015, 9, 8, 10, 10, 0)
         )
@@ -363,6 +363,7 @@ def test_populate_pb_with_cancelation():
         trip_update.contributor = "realtime.cots"
         trip_update.company_id = "sncf"
         trip_update.effect = "REDUCED_SERVICE"
+        trip_update.contributor_id = "realtime.cots"
         real_time_update.trip_updates.append(trip_update)
 
         db.session.add(real_time_update)
@@ -527,6 +528,7 @@ def test_populate_pb_for_added_trip():
             dep_status="none",
         )
         trip_update.stop_time_updates.append(st)
+        trip_update.contributor_id = "realtime.cots"
 
         db.session.add(real_time_update)
         db.session.commit()

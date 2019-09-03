@@ -79,6 +79,9 @@ def make_navitia_wrapper():
     """
     return a navitia wrapper to call the navitia API
     """
+    # TODO:
+    #  For the future multi-gtfs_rt with configurations in the table contributor
+    #  parameters values should be updated by parameters of config file if present.
     url = current_app.config[str("NAVITIA_URL")]
     token = current_app.config.get(str("NAVITIA_TOKEN"))
     instance = current_app.config[str("NAVITIA_INSTANCE")]

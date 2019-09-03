@@ -323,7 +323,7 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
         self,
         vj=None,
         status="none",
-        contributor="realtime.cots",
+        contributor=None,
         company_id=None,
         effect=None,
         physical_mode_id=None,
@@ -332,6 +332,7 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
         self.created_at = datetime.datetime.utcnow()
         self.vj = vj
         self.status = status
+        self.contributor = contributor
         self.company_id = company_id
         self.effect = effect
         self.physical_mode_id = physical_mode_id
@@ -451,13 +452,12 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
         db.Index("realtime_update_contributor_id_and_created_at", "created_at", "contributor_id"),
     )
 
-    def __init__(
-        self, raw_data, connector, contributor="realtime.cots", status="OK", error=None, received_at=None
-    ):
+    def __init__(self, raw_data, connector, contributor=None, status="OK", error=None, received_at=None):
         self.id = gen_uuid()
         self.raw_data = raw_data
         self.connector = connector
         self.status = status
+        self.contributor = contributor
         self.error = error
         self.received_at = received_at if received_at else datetime.datetime.utcnow()
         self.contributor_id = contributor

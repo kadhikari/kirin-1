@@ -34,6 +34,7 @@ import os
 import six
 
 from kirin import app, db
+from kirin.core import model
 import pytest
 import flask_migrate
 
@@ -70,13 +71,19 @@ def clean_db():
         db.session.commit()
 
         # Add two contributors in the table
-        db.session.execute(
-            "INSERT INTO contributor VALUES('realtime.cots','sncf',"
-            "'token_to_be_modified','feed_url_to_be_modified','cots');"
-        )
-        db.session.execute(
-            "INSERT INTO contributor VALUES('realtime.sherbrooke','sherbrooke',"
-            "'token_to_be_modified','feed_url_to_be_modified','gtfs-rt');"
+        db.session.add_all(
+            [
+                model.Contributor(
+                    "realtime.cots", "sncf", "cots", "token_to_be_modified", "feed_url_to_be_modified"
+                ),
+                model.Contributor(
+                    "realtime.sherbrooke",
+                    "sherbrooke",
+                    "gtfs-rt",
+                    "token_to_be_modified",
+                    "feed_url_to_be_modified",
+                ),
+            ]
         )
         db.session.commit()
 

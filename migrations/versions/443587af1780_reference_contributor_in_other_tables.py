@@ -73,4 +73,4 @@ def downgrade():
     op.drop_column("real_time_update", "contributor_id")
 
     # Delete lines from the table contributor
-    op.execute("DELETE FROM contributor;")
+    op.execute("DELETE FROM contributor WHERE id IN ('realtime.cots', 'realtime.sherbrooke') ;")

@@ -302,8 +302,6 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
         single_parent=True,
     )
     message = db.Column(db.Text, nullable=True)
-    contributor = db.Column(db.Text, nullable=True)
-    db.Index("contributor_idx", contributor)
     stop_time_updates = db.relationship(
         "StopTimeUpdate",
         backref="trip_update",
@@ -332,7 +330,6 @@ class TripUpdate(db.Model, TimestampMixin):  # type: ignore
         self.created_at = datetime.datetime.utcnow()
         self.vj = vj
         self.status = status
-        self.contributor = contributor
         self.company_id = company_id
         self.effect = effect
         self.physical_mode_id = physical_mode_id
@@ -435,7 +432,6 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
     db.Index("status_idx", status)
     error = db.Column(db.Text, nullable=True)
     raw_data = deferred(db.Column(db.Text, nullable=True))
-    contributor = db.Column(db.Text, nullable=True)
     contributor_id = db.Column(db.Text, db.ForeignKey("contributor.id"), nullable=False)
 
     trip_updates = db.relationship(
@@ -448,7 +444,6 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
 
     __table_args__ = (
         db.Index("realtime_update_created_at", "created_at"),
-        db.Index("realtime_update_contributor_and_created_at", "created_at", "contributor"),
         db.Index("realtime_update_contributor_id_and_created_at", "created_at", "contributor_id"),
     )
 
@@ -457,7 +452,6 @@ class RealTimeUpdate(db.Model, TimestampMixin):  # type: ignore
         self.raw_data = raw_data
         self.connector = connector
         self.status = status
-        self.contributor = contributor
         self.error = error
         self.received_at = received_at if received_at else datetime.datetime.utcnow()
         self.contributor_id = contributor

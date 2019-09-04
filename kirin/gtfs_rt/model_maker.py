@@ -131,7 +131,6 @@ class KirinModelBuilder(object):
         trip_updates = []
         for vj in vjs:
             trip_update = model.TripUpdate(vj=vj)
-            trip_update.contributor = self.contributor
             trip_update.contributor_id = self.contributor_id
             highest_st_status = ModificationType.none.name
 

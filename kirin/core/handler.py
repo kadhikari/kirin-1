@@ -458,7 +458,6 @@ def merge(navitia_vj, db_trip_update, new_trip_update, is_new_complete=False):
     res.effect = new_trip_update.effect
     if new_trip_update.message is not None or is_new_complete:
         res.message = new_trip_update.message
-    res.contributor = new_trip_update.contributor
     res.contributor_id = new_trip_update.contributor_id
 
     if res.status == ModificationType.delete.name:

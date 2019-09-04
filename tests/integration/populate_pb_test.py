@@ -360,7 +360,6 @@ def test_populate_pb_with_cancelation():
         trip_update.status = "delete"
         trip_update.message = "Message Test"
         real_time_update = RealTimeUpdate(raw_data=None, connector="cots", contributor="realtime.cots")
-        trip_update.contributor = "realtime.cots"
         trip_update.company_id = "sncf"
         trip_update.effect = "REDUCED_SERVICE"
         trip_update.contributor_id = "realtime.cots"

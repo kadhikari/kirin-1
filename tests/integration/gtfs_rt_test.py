@@ -449,6 +449,7 @@ def test_gtfs_rt_pass_midnight(pass_midnight_gtfs_rt_data, mock_rabbitmq):
 
         trip_update = TripUpdate.find_by_dated_vj("R:vj1", datetime.datetime(2012, 6, 16, 3, 30))
         assert trip_update.contributor == "realtime.sherbrooke"
+        assert trip_update.contributor_id == "realtime.sherbrooke"
         assert trip_update
 
         assert trip_update.vj.get_start_timestamp() == datetime.datetime(2012, 6, 16, 3, 30)
